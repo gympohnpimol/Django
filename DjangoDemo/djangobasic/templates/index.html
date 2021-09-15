@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content%}
+<h2 align="center"> Content Detail </h2>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Content ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">description</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+
+            <tr>
+            <th scope="row"> {{post.id}}</th>
+            <td>{{post.name}}</td>
+            <td>{{post.desc}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
