@@ -22,7 +22,7 @@
     <link href="{% static 'frontend/css/font-awesome.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'frontend/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'frontend/css/style.css' %}" rel="stylesheet">Ï
 
     <!-- Responsive styles for this template -->
     <link href="{% static 'frontend/css/responsive.css' %}" rel="stylesheet">
@@ -127,70 +127,31 @@
                     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="page-wrapper">
                             <div class="blog-top clearfix">
-                                <h4 class="pull-left">บทความล่าสุด <a href="#"><i class="fa fa-rss"></i></a></h4>
+                                <h4 class="pull-left">All Contents<a href="#"><i class="fa fa-rss"></i></a></h4>
                             </div><!-- end blog-top -->
 
                             <div class="blog-list clearfix">
-                                <div class="blog-box row">
+                                {% for blog in blogs %}
+                                    <div class="blog-box row">
                                     <div class="col-md-4">
                                         <div class="post-media">
                                             <a href="#" title="">
-                                                <img src="{% static 'frontend/upload/tech_01.jpg'%} " alt="" class="img-fluid">
+                                                <img src="{{blog.image.url}}" alt="" class="img-fluid">
                                                 <div class="hovereffect"></div>
                                             </a>
                                         </div><!-- end media -->
                                     </div><!-- end col -->
 
                                     <div class="blog-meta big-meta col-md-8">
-                                        <h4><a href="#" title="">Top 10 phone applications and 2017 mobile design awards</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">ท่องเที่ยว</a></small>
-                                        <small><a href="#" title="">21 July, 2017</a></small>
-                                        <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 1114</a></small>
+                                        <h4><a href="#" title="">{{blog.name}}</a></h4>
+                                        <p>{{blog.description}}</p>
+                                        <small class="firstsmall"><a class="bg-orange" href="#" title="">{{blog.category}}</a></small>
+                                        <small><a href="#" title="">{{blog.created}}</a></small>
+                                        <small><a href="tech-author.html" title="">by {{blog.writer}}</small>
+                                        <small><a href="#" title=""><i class="fa fa-eye"></i>{{blog.views}}</a></small>
                                     </div><!-- end meta -->
                                 </div><!-- end blog-box -->
-                                <div class="blog-box row">
-                                    <div class="col-md-4">
-                                        <div class="post-media">
-                                            <a href="#" title="">
-                                                <img src="{% static 'frontend/upload/tech_01.jpg' %} " alt="" class="img-fluid">
-                                                <div class="hovereffect"></div>
-                                            </a>
-                                        </div><!-- end media -->
-                                    </div><!-- end col -->
-
-                                    <div class="blog-meta big-meta col-md-8">
-                                        <h4><a href="#" title="">A device you can use both headphones and usb</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">เทคโนโลยี</a></small>
-                                        <small><a href="#" title="">21 July, 2017</a></small>
-                                        <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 4412</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end blog-box -->
-
-                                <hr class="invis">
-
-                                <div class="blog-box row">
-                                    <div class="col-md-4">
-                                        <div class="post-media">
-                                            <a href="#" title="">
-                                                <img src="{% static 'frontend/upload/tech_blog_03.jpg' %}" alt="" class="img-fluid">
-                                                <div class="hovereffect"></div>
-                                            </a>
-                                        </div><!-- end media -->
-                                    </div><!-- end col -->
-
-                                    <div class="blog-meta big-meta col-md-8">
-                                        <h4><a href="#" title="">Two brand new laptop models from ABC computer</a></h4>
-                                        <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                        <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">Development</a></small>
-                                        <small><a href="#" title="">20 July, 2017</a></small>
-                                        <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                        <small><a href="#" title=""><i class="fa fa-eye"></i> 2313</a></small>
-                                    </div><!-- end meta -->
-                                </div><!-- end blog-box -->
+                                {% endfor %}
                             </div><!-- end blog-list -->
                         </div><!-- end page-wrapper -->
                         <hr class="invis">
@@ -213,7 +174,7 @@
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="sidebar">
                             <div class="widget">
-                                <h2 class="widget-title">บทความทั้งหมด</h2>
+                                <h2 class="widget-title">Popular Content</h2>
                                 <div class="trend-videos">
                                     <div class="blog-box">
                                         <div class="post-media">
@@ -327,14 +288,12 @@
                     </div><!-- end col -->
                     <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="widget">
-                            <h2 class="widget-title">Popular Categories</h2>
+                            <h2 class="widget-title">Categories</h2>
                             <div class="link-widget">
                                 <ul>
-                                    <li><a href="#">Marketing <span>(21)</span></a></li>
-                                    <li><a href="#">SEO Service <span>(15)</span></a></li>
-                                    <li><a href="#">Digital Agency <span>(31)</span></a></li>
-                                    <li><a href="#">Make Money <span>(22)</span></a></li>
-                                    <li><a href="#">Blogging <span>(66)</span></a></li>
+                                    {% for category in categories %}
+                                    <li><a href="#">{{category.name}}<span>(0)</span></a></li>
+                                    {% endfor %}
                                 </ul>
                             </div><!-- end link-widget -->
                         </div><!-- end widget -->
