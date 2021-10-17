@@ -9,6 +9,10 @@ def index(request):
     categories = Category.objects.all()
     blogs = Blogs.objects.all()
     latest = Blogs.objects.all().order_by('-pk')[:2]
+    # popular content 
+    popular = Blogs.objects.all().order_by('-views')[:3]
+    # recommended content
+    suggestion = Blogs.objects.all().order_by('views')[:3]
 
     paginator = Paginator(blogs, 3)
     try:
@@ -23,8 +27,17 @@ def index(request):
 
 
 
-    return render(request, "frontend/index.html", {'categories': categories, 'blogs': blogPerpage, 'latest': latest})
+    return render(request, "frontend/index.html", {'categories': categories, 'blogs': blogPerpage, 
+                                                    'latest': latest, 'popular': popular, 'suggestion': suggestion})
 
 def blogDetail(request, id):
+    categories = Category.objects.all()
+    popular = Blogs.objects.all().order_by('-views')[:3]
+    suggestion = Blogs.objects.all().order_by('views')[:3]
+
     singleBlog = Blogs.objects.get(id=id)
-    return render(request, "frontend/blogDetail.html", {'blog': singleBlog})
+    singleBlog.views = singleBlog.views + 1
+    singleBlog.save()
+    return render(request, "frontend/blogDetail.html", {'blog': singleBlog, 'categories': categories, 
+                                                        'popular': popular, 'suggestion': suggestion})
+
